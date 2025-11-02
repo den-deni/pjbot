@@ -49,3 +49,12 @@ def get_settings(is_enabled: bool = False) -> InlineKeyboardMarkup:
         ]
     )
     return keyboard
+
+
+about_button = InlineKeyboardMarkup(
+    inline_keyboard=[
+        [
+            InlineKeyboardButton(text="About", url="https://telegra.ph/Encoder-Bot--%D0%86nstrukc%D1%96ya-koristuvacha-10-29")
+        ]
+    ]
+)

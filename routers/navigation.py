@@ -13,13 +13,13 @@ select_router = Router()
 db = Database()
 
 
-menu_button = kb_builder(["Encoder", "Settigs"],
+menu_button = kb_builder(["Encoder", "Settings"],
                          ["encoder", "settings"],
                          size=2)
 
 
 
-with_key_btn = kb_builder(["Encoder", "Settigs", "Key"],
+with_key_btn = kb_builder(["Encoder", "Settings", "Key"],
                           ["encoder", "settings", "key"],
                           size=2)
 
@@ -88,7 +88,7 @@ async def settings_button(call: CallbackQuery):
     await call.bot.edit_message_caption(
         chat_id=call.from_user.id,
         message_id=call.message.message_id,
-        caption=f"{html.italic('You can off anonim options')}",
+        caption=f"{html.italic('Status options')}",
         reply_markup=btn
     )
 
@@ -105,4 +105,3 @@ async def key_menu(call: CallbackQuery):
                                                                 ["key_create", "key_change", "key_delete", "key_show", "back"],
                                                                 size=2))
     await call.answer()
-
