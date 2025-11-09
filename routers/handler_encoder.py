@@ -44,10 +44,9 @@ async def gen_key(message: Message, encoder: Encoder):
 @encoder_router.callback_query(F.data.in_(["encrypt", "decrypt"]))
 async def select_encrypt(call: CallbackQuery, state: FSMContext):
     user_id = call.from_user.id
-    check_status = await db.get_status(user_id)
-    if check_status:
-        key = await db.get_key(user_id)
-        await state.update_data(action=call.data, key=key)
+    check_key = await db.get_key(user_id)
+    if check_key:
+        await state.update_data(action=call.data, key=check_key)
         await call.answer(text=f"Send me text", show_alert=True)
         await state.set_state(BotState.user_data)
     else:

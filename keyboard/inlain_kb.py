@@ -43,6 +43,7 @@ def get_settings(is_enabled: bool = False) -> InlineKeyboardMarkup:
                     callback_data=f"toggle_settings:{is_enabled}"
                 )
             ],
+
             [
                 InlineKeyboardButton(text="Back", callback_data="back")
             ]

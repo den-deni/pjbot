@@ -19,9 +19,9 @@ menu_button = kb_builder(["Encoder", "Settings"],
 
 
 
-with_key_btn = kb_builder(["Encoder", "Settings", "Key"],
-                          ["encoder", "settings", "key"],
-                          size=2)
+with_key_btn = kb_builder(["Encoder", "Settings", "Key", "Encoder_File"],
+                          ["encoder", "settings", "key", "encoder_file"],
+                          size=1)
 
 
 
@@ -60,7 +60,20 @@ async def choice_method(call: CallbackQuery, bot: Bot):
                                                            callback=["encrypt", "decrypt", "back"],
                                                            size=2))
 
+
+
+
+@select_router.callback_query(F.data == "encoder_file")
+async def choise_method_for_file(call: CallbackQuery, bot: Bot):
+    await bot.edit_message_caption(chat_id=call.from_user.id,
+                                   message_id=call.message.message_id,
+                                   caption=f"{html.italic('You can crypt file')}",
+                                   reply_markup=kb_builder(["F_encrypt", "F_decrypt", "Back"],
+                                                           ["fencrypt", "fdecrypt", "back"],
+                                                           size=2))
     
+
+
 
 @select_router.callback_query(F.data == "back")
 async def back_button(call: CallbackQuery, bot: Bot):
