@@ -100,3 +100,13 @@ class Database:
         async with aiosqlite.connect(self.db) as databese:
             await databese.execute("UPDATE user SET status = ? WHERE tg_id = ?", (status, tg_id))
             await databese.commit()
+
+
+
+
+    async def get_all_users(self):
+        """Отримати всіх користувачів"""
+        async with aiosqlite.connect(self.db) as database:
+            async with database.execute("SELECT tg_id, username FROM user") as cursor:
+                users = await cursor.fetchall()
+                return users
