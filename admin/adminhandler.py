@@ -19,10 +19,8 @@ admin_router.message.middleware(AdminF())
 async def get_users(message: Message):
     await message.delete()
     users = await db.get_all_users()
-    for i, j in users:
-        username = i
-        user_id = j
-    msg = await message.answer(f"USERNAME: {username}\nUSER_ID: {user_id}")
+    for user in users:
+        msg = await message.answer(f"USER_ID: {user['id']}\nUSERNAME: {user['username']}")
     await asyncio.sleep(30)
     await msg.delete()
 

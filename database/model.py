@@ -108,5 +108,8 @@ class Database:
         """Отримати всіх користувачів"""
         async with aiosqlite.connect(self.db) as database:
             async with database.execute("SELECT tg_id, username FROM user") as cursor:
-                users = await cursor.fetchall()
-                return users
+                rows = await cursor.fetchall()
+                return [
+                    {"id": row[0], "username": row[1]}
+                    for row in rows
+                ]
