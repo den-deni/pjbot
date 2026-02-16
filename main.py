@@ -1,9 +1,6 @@
 import asyncio
-import os
 import logging
 import sys
-from dotenv import load_dotenv
-load_dotenv()
 
 from aiogram import Bot, Dispatcher, types
 from aiogram.client.default import DefaultBotProperties
@@ -12,10 +9,11 @@ from aiogram.enums import ParseMode
 from routers.main_pouter import routers
 from commands.list_cmd import private
 from database.model import Database
+from config.config import Config
 
 
 # Bot token can be obtained via https://t.me/BotFather
-TOKEN = os.getenv("TOKEN")
+TOKEN = Config.token
 
 
 

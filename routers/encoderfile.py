@@ -26,7 +26,7 @@ async def start_process_for_file(call: CallbackQuery, state: FSMContext):
     check_key = await db.get_key(user_id)
     if check_key:
         await state.update_data(action=call.data, key=check_key)
-        await call.answer(text="Ok send me file max size must be 20GB", show_alert=True)
+        await call.answer(text="Ok send me file max size must be 20MB", show_alert=True)
         await state.set_state(BotState.file_data)
     else:
         await call.answer(text="You not have key", show_alert=True)
@@ -88,7 +88,7 @@ async def process_for_file(message: Message, state: FSMContext, encoder: Encoder
 
     # 🔸 Надсилаємо результат
     msg = await message.answer_document(FSInputFile(result_path), caption=caption)
-    await asyncio.sleep(20)
+    await asyncio.sleep(60)
     await msg.delete()
 
     # 🔸 Очищаємо тимчасові файли

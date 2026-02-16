@@ -6,10 +6,8 @@ load_dotenv(override=True)
 
 class Config:
     admin_id = int(getenv("ADMIN_ID"))
+    token = getenv("TOKEN")
     
 
 
 config = Config
-
-
-print(type(config.admin_id))
