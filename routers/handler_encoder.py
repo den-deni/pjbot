@@ -128,4 +128,6 @@ async def finish_state(message: Message, state: FSMContext, encoder: Encoder):
 @encoder_router.message(Command("about"))
 async def get_about_button(message: Message):
     await message.delete()
-    await message.answer(text="Instruction bot", reply_markup=about_button)
+    msg = await message.answer(text="Instruction bot", reply_markup=about_button)
+    await asyncio.sleep(30)
+    await msg.delete()
