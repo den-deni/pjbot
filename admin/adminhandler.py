@@ -21,8 +21,8 @@ async def get_users(message: Message):
     users = await db.get_all_users()
     for user in users:
         msg = await message.answer(f"USER_ID: {user['id']}\nUSERNAME: {user['username']}")
-    await asyncio.sleep(30)
-    await msg.delete()
+        await asyncio.sleep(30)
+        await msg.delete()
 
 
         
