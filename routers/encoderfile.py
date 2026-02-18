@@ -59,7 +59,11 @@ async def process_for_file(message: Message, state: FSMContext, encoder: Encoder
         file_name = "voice.ogg"
         file_size = message.voice.file_size
     else:
-        await message.answer("⚠️ Format must be a document, audio or voice file.")
+        if message.photo:
+            await message.delete()
+            msg = await message.answer("⚠️ Format must be a document, audio or voice file.")
+            await asyncio.sleep(10)
+            await msg.delete()
         return
 
     # 🔸 Обмеження на розмір
@@ -77,6 +81,9 @@ async def process_for_file(message: Message, state: FSMContext, encoder: Encoder
 
     await message.bot.download_file(file_info.file_path, destination=file_path)
     await message.delete()
+    msg = await message.answer(text="Wait in process...⏳")
+    await asyncio.sleep(25)
+    await msg.delete()
 
     # 🔸 Шифрування або розшифрування
     if action == "fencrypt":
