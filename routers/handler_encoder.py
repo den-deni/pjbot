@@ -125,7 +125,7 @@ async def finish_state(message: Message, state: FSMContext, encoder: Encoder):
 
 
 
-@encoder_router.message(Command("about"))
+@encoder_router.message(Command("help"))
 async def get_about_button(message: Message):
     await message.delete()
     msg = await message.answer(text="Instruction bot", reply_markup=about_button)
